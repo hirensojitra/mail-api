@@ -9,23 +9,22 @@ const PORT = process.env.PORT || 5000;
 
 // Allowed origins
 const allowedOrigins = [
-  'http://localhost:5173',       // Vite dev server
-  'http://localhost:3000',       // CRA dev server
-  'https://agni.postnew.in',     // Production frontend
-  'https://staging.postnew.in'   // Optional staging
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://agni.postnew.in"
 ];
 
-// Middleware
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS: ' + origin));
+      callback(new Error("CORS not allowed for: " + origin));
     }
   },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true
 }));
 
 app.use(express.json());
